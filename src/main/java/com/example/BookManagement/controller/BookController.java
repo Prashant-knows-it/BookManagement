@@ -1,5 +1,6 @@
 package com.example.BookManagement.controller;
 
+import com.example.BookManagement.dto.BookDTO;
 import com.example.BookManagement.entity.Book;
 import com.example.BookManagement.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping
-    public Book saveBook(@RequestBody Book book) {
-        return bookService.saveBook(book);
+    public Book saveBook(@RequestBody BookDTO bookDTO) {
+        return bookService.saveBook(bookDTO);
     }
 
     @GetMapping("/{id}")
@@ -29,39 +30,9 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
-    @GetMapping("/author/{authorName}")
-    public List<Book> getBooksByAuthorName(@PathVariable String authorName) {
-        return bookService.getBooksByAuthorName(authorName);
-    }
-
-    @GetMapping("/genre/{genre}")
-    public List<Book> getBooksByGenre(@PathVariable String genre) {
-        return bookService.getBooksByGenre(genre);
-    }
-
-    @GetMapping("/search")
-    public List<Book> searchBooksByTitle(@RequestParam String title) {
-        return bookService.searchBooksByTitle(title);
-    }
-
-    @GetMapping("/year")
-    public List<Book> getBooksByPublicationYearRange(@RequestParam int startYear, @RequestParam int endYear) {
-        return bookService.getBooksByPublicationYearRange(startYear, endYear);
-    }
-
-    @GetMapping("/price")
-    public List<Book> getBooksByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
-        return bookService.getBooksByPriceRange(minPrice, maxPrice);
-    }
-
-    @GetMapping("/available")
-    public List<Book> getAvailableBooks(@RequestParam int minimumStock) {
-        return bookService.getAvailableBooks(minimumStock);
-    }
-
     @PutMapping("/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
-        return bookService.updateBook(id, book);
+    public Book updateBook(@PathVariable Long id, @RequestBody BookDTO bookDTO) {
+        return bookService.updateBook(id, bookDTO);
     }
 
     @DeleteMapping("/{id}")

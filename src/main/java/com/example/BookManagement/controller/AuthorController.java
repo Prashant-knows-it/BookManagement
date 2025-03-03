@@ -1,5 +1,6 @@
 package com.example.BookManagement.controller;
 
+import com.example.BookManagement.dto.AuthorResponseDTO;
 import com.example.BookManagement.entity.Author;
 import com.example.BookManagement.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class AuthorController {
     }
 
     @GetMapping
-    public List<Author> getAllAuthors() {
+    public List<AuthorResponseDTO> getAllAuthors() {
         return authorService.getAllAuthors();
     }
 
